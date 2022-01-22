@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState, useRef } from 'react';
+import ChampionList from './ChampionList';
+import { v4 as uuidv4 } from 'uuid';
+
 
 function App() {
+  const [champions, setChampions] = useState([])
+  const championNameRef = useRef()
+
+  function handleAddChampion(e){
+    const name = championNameRef.current.value 
+    if (name === '') return
+    console.log(name)
+    setChampions(prevChampions => {
+      return [...prevChampions, { id: uuidv4(), name: name, complete: false}]
+    })
+    championNameRef.current.value = null
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+    <ChampionList champions={champions}/>
+    <input ref={championNameRef} type="text" />
+    <button onClick={handleAddChampion}>Add Champion</button>
+    </>
+    
+  )
 }
 
 export default App;
