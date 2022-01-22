@@ -7,7 +7,6 @@ export default function Champion({ champion }) {
         <input type='checkbox' checked={champion.in_use}></input>
         {champion.name}
         <br />
-        {champion.id}
       </label>
   </div>
   );
