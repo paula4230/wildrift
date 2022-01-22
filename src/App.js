@@ -3,18 +3,26 @@ import React, { useState, useRef } from 'react';
 import ChampionList from './ChampionList';
 import { v4 as uuidv4 } from 'uuid';
 
-
 function App() {
+  
   const [champions, setChampions] = useState([])
   const championNameRef = useRef()
+
+  function incrementId(id) {
+    
+  }
+  
 
   function handleAddChampion(e){
     const name = championNameRef.current.value 
     if (name === '') return
+
     console.log(name)
     setChampions(prevChampions => {
       return [...prevChampions, { id: uuidv4(), name: name, complete: false}]
     })
+
+    console.log(uuidv4())
     championNameRef.current.value = null
   }
 

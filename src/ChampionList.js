@@ -4,7 +4,7 @@ import Champion from './Champion';
 export default function ChampionList({ champions }) {
   return ( 
     champions.map( champion => {
-        return <Champion key={champion} champion={champion} />
+        return <Champion key={champion.id} champion={champion} />
     })
 
   );
